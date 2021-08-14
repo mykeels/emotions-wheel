@@ -35,18 +35,14 @@ export const EntryListByDay = ({ entries = [] }) => {
     {}
   );
   const paginatedDates = Object.keys(groupedPaginatedDates)
-    .sort()
+    .sort((a, b) => (a > b ? -1 : a < b ? 1 : 0))
     .map((key) => ({ day: key, entries: groupedPaginatedDates[key] }));
   const columnSpacing = useMedia(
     ['(min-width: 1366px)', '(min-width: 1024px)'],
     [3, 2],
     1
   );
-  const titleAlign = useMedia(
-    ['(min-width: 1200px)'],
-    ["center"],
-    "left"
-  )
+  const titleAlign = useMedia(['(min-width: 1200px)'], ['center'], 'left');
 
   return (
     <div>
